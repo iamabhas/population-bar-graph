@@ -18,7 +18,7 @@
 
 #ranges {
   border-right: 1px solid black;
-  width: 10%;
+  padding-right: 1rem;
 }
 
 .range {
