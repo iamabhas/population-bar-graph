@@ -1,9 +1,23 @@
 const chartContainer = document.querySelector(".chart-container");
+const section = document.getElementById('ranges')
+
+const maxPopulation = 1500
+const rangeDifference = 100
 
 const barHeight = (num) => {
-  const height = (num / 1500) * 100;
+  const height = (num / maxPopulation) * 100;
   return height;
 };
+
+
+
+for(let rangeStart=maxPopulation;rangeStart>=rangeDifference;rangeStart-=rangeDifference){``
+    const element = document.createElement("article")
+    element.classList.add('range')
+    element.textContent=`${rangeStart} million -`
+    section.appendChild(element)
+}
+
 
 const countries = [
   {
@@ -22,6 +36,7 @@ const countries = [
     name: "Nepal",
     population: 29,
   },
+
 ];
 
 countries.forEach((country) => {
@@ -38,8 +53,18 @@ countries.forEach((country) => {
   bar.textContent = `${country.name}:${country.population}million`;
   const heightOfBar = barHeight(country.population);
   bar.style.fontStyle = "bold";
-  bar.style.height = `${heightOfBar}%`;
 
+  if(country.population<=1){
+    bar.style.height="1px"
+  }else if(country.population>maxPopulation){
+    alert("Population Exceeds Max Population ! Update Max Population !!")
+    bar.style.height="100%"
+    bar.style.color="red"
+  }
+  else{
+    bar.style.height = `${heightOfBar}%`;
+  }
+  
   element.appendChild(innerElement);
   element.appendChild(bar);
 
